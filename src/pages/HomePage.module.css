@@ -1,0 +1,27 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rhythm-4);
+  padding: var(--rhythm-4) 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rhythm-8);
+}
+
+.title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.grid {
+  width: 100%;
+}
+
