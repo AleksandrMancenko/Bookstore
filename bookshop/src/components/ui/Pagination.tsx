@@ -8,12 +8,30 @@ interface Props {
   onPageChange: (page: number) => void;
 }
 
+const ArrowLeftIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false" className={styles.icon}>
+    <path
+      d="M9.78 3.22a.75.75 0 0 1 0 1.06L6.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const ArrowRightIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false" className={styles.icon}>
+    <path
+      d="M6.22 12.78a.75.75 0 0 1 0-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 1.06-1.06l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 export const Pagination = memo(({ page, total, pageSize, onPageChange }: Props) => {
   const effectivePageSize = pageSize > 0 ? pageSize : 1;
   const totalPages = Math.max(1, Math.ceil(total / effectivePageSize));
   const items = useMemo(() => {
     if (totalPages <= 1) {
-      return [];
+      return [{ type: "page" as const, value: 1 }];
     }
 
     if (totalPages <= 7) {
@@ -43,35 +61,68 @@ export const Pagination = memo(({ page, total, pageSize, onPageChange }: Props) 
     return result;
   }, [page, totalPages]);
 
-  if (items.length === 0) {
-    return null;
-  }
-
   const handleClick = (value: number) => {
     if (value === page) return;
     onPageChange(value);
   };
 
+  const handlePrev = () => {
+    if (page <= 1) return;
+    onPageChange(page - 1);
+  };
+
+  const handleNext = () => {
+    if (page >= totalPages) return;
+    onPageChange(page + 1);
+  };
+
+  const canGoPrev = page > 1;
+  const canGoNext = page < totalPages;
+
   return (
     <nav className={styles.root} aria-label="Pagination">
-      {items.map((item) => {
-        if (item.type === "ellipsis") {
-          return <span key={item.key} className={styles.ellipsis}>…</span>;
-        }
+      <button
+        type="button"
+        className={`${styles.navButton} ${styles.navPrev} ${!canGoPrev ? styles.navDisabled : ""}`}
+        onClick={handlePrev}
+        disabled={!canGoPrev}
+        aria-label="Предыдущая страница"
+      >
+        <ArrowLeftIcon />
+        <span className={styles.navLabel}>Prev</span>
+      </button>
 
-        const isActive = item.value === page;
-        return (
-          <button
-            key={item.value}
-            type="button"
-            className={`${styles.page} ${isActive ? styles.active : ""}`}
-            onClick={() => handleClick(item.value)}
-            aria-current={isActive ? "page" : undefined}
-          >
-            {item.value}
-          </button>
-        );
-      })}
+      <div className={styles.pages} role="list">
+        {items.map((item) => {
+          if (item.type === "ellipsis") {
+            return <span key={item.key} className={styles.ellipsis}>…</span>;
+          }
+
+          const isActive = item.value === page;
+          return (
+            <button
+              key={item.value}
+              type="button"
+              className={`${styles.page} ${isActive ? styles.active : ""}`}
+              onClick={() => handleClick(item.value)}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.value}
+            </button>
+          );
+        })}
+      </div>
+
+      <button
+        type="button"
+        className={`${styles.navButton} ${styles.navNext} ${!canGoNext ? styles.navDisabled : ""}`}
+        onClick={handleNext}
+        disabled={!canGoNext}
+        aria-label="Следующая страница"
+      >
+        <span className={styles.navLabel}>Next</span>
+        <ArrowRightIcon />
+      </button>
     </nav>
   );
 });

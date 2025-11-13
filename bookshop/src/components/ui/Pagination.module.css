@@ -1,8 +1,24 @@
-.root { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
-.page { padding: 6px 10px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; cursor: pointer; }
-.page:hover { border-color: #d1d5db; }
-.active { background: #111827; border-color: #111827; color: #fff; }
-.ellipsis { display: flex; align-items: center; padding: 0 8px; color: #6b7280; }
+.root { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; margin-top: 16px; width: 100%; }
+.pages { display: flex; gap: 12px; align-items: center; justify-content: center; }
+.page { padding: 0; background: transparent; border: none; cursor: pointer; min-width: 0; font-size: 14px; color: #374151; }
+.page:hover { color: #111827; }
+.active { font-weight: 700; color: #111827; cursor: default; }
+.active:hover { color: #111827; }
+.ellipsis { display: flex; align-items: center; padding: 0 4px; color: #9ca3af; }
+.navButton { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: none; background: transparent; cursor: pointer; text-transform: uppercase; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; color: #111827; }
+.navButton:hover:not(.navDisabled) { color: #000; }
+.navDisabled { opacity: 0.4; cursor: not-allowed; }
+.navButton:disabled { cursor: not-allowed; color: #9ca3af; }
+.navLabel { font-size: 12px; letter-spacing: 0.08em; }
+.icon { display: block; }
+.navPrev { justify-self: start; }
+.navNext { justify-self: end; }
+
+@media (max-width: 480px) {
+  .root { grid-template-columns: 1fr; gap: 12px; }
+  .navButton { width: 100%; justify-content: center; }
+  .pages { width: 100%; justify-content: center; }
+}
 
 
 
