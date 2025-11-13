@@ -1,0 +1,17 @@
+.rating {
+  display: flex;
+  gap: 2px;
+  font-size: 16px;
+}
+
+.filled {
+  color: #ffc107;
+}
+
+.empty {
+  color: #e0e0e0;
+}
+
+
+
+

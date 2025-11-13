@@ -1,0 +1,10 @@
+.root { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
+.page { padding: 6px 10px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; cursor: pointer; }
+.page:hover { border-color: #d1d5db; }
+.active { background: #111827; border-color: #111827; color: #fff; }
+.ellipsis { display: flex; align-items: center; padding: 0 8px; color: #6b7280; }
+
+
+
+
+

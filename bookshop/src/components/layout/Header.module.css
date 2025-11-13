@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: auto minmax(320px, 1fr) auto;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 0;
+  margin: 0 auto;
+  width: min(1440px, 100%);
+}
+
+.logo {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #111827;
+}
+
+.search {
+  position: relative;
+  max-width: 540px;
+  width: 100%;
+  justify-self: center;
+}
+
+.searchInput {
+  width: 100%;
+  height: 48px;
+  padding: 0 56px 0 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.searchLink {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.searchLink:hover {
+  color: #111827;
+}
+
+.searchLink:focus-visible {
+  outline: 3px solid rgba(79, 70, 229, 0.35);
+  outline-offset: 2px;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  position: relative;
+}
+
+.searchIcon::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1.6px solid currentColor;
+  background: transparent;
+}
+
+.searchIcon::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 1.6px;
+  background: currentColor;
+  border-radius: 1px;
+  bottom: 1px;
+  right: 0;
+  transform: rotate(45deg);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  color: #4b5563;
+  justify-self: end;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.iconButton:hover {
+  color: #111827;
+  transform: translateY(-1px);
+}
+
+.iconButton svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 960px) {
+  .inner {
+    grid-template-columns: auto minmax(240px, 1fr) auto;
+    gap: 20px;
+    padding: 16px 16px 20px;
+  }
+
+  .actions {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 14px 16px;
+  }
+
+  .search {
+    order: 3;
+    justify-self: stretch;
+  }
+
+  .actions {
+    order: 2;
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .searchInput,
+  .searchLink,
+  .iconButton {
+    transition: none;
+  }
+}
+
