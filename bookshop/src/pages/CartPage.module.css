@@ -1,8 +1,128 @@
-.root { display: grid; gap: 16px; }
-.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.item { display: grid; grid-template-columns: 64px 1fr auto auto; align-items: center; gap: 12px; padding: 10px; border: 1px solid #eee; border-radius: 10px; }
-.img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; }
-.footer { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid #eee; }
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rhythm-5);
+  padding: var(--rhythm-4) 0 var(--rhythm-5);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rhythm-6);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto var(--rhythm-5);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.2s;
+  outline: none;
+}
+
+.backButton:hover {
+  color: #4b5563;
+}
+
+.backButton:active {
+  color: #4b5563;
+  outline: none;
+}
+
+.backButton:focus {
+  outline: none;
+  border: none;
+}
+
+.title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cartList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.emptyState {
+  font-size: 18px;
+  text-align: center;
+  color: #6b7280;
+  margin: var(--rhythm-6) 0;
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 32px auto 0;
+  padding-top: 24px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  gap: 24px;
+}
+
+.summaryLabel {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.summaryValue {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.summaryLabelTotal {
+  font-size: 24px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.summaryValueTotal {
+  font-size: 24px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.checkoutButton {
+  width: 300px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 14px 24px;
+}
 
 
 
