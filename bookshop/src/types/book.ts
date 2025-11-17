@@ -2,7 +2,7 @@ export interface BookBase {
   title: string;
   subtitle?: string;
   isbn13: string;
-  price: string;     // в API это строка, оставляем так
+  price: string;     // API returns this as a string, keeping it as is
   image: string;
   url: string;
 }

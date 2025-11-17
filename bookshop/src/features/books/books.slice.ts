@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { BookDetails } from "@/types/book";
 import { booksApi } from "@/features/api/api";
 
@@ -13,7 +13,11 @@ const initial: BooksState = {
 const slice = createSlice({
   name: "books",
   initialState: initial,
-  reducers: {},
+  reducers: {
+    setBook: (state, action: PayloadAction<BookDetails>) => {
+      state.byId[action.payload.isbn13] = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addMatcher(
       booksApi.endpoints.getBookDetails.matchFulfilled,

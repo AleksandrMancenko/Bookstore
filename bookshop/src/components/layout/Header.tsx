@@ -46,13 +46,13 @@ export function Header() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="search"
-            aria-label="Поиск книг"
+            aria-label="Search books"
             ref={searchInputRef}
           />
           <Link
             to={searchLink}
             className={styles.searchLink}
-            aria-label="Перейти к результатам поиска"
+            aria-label="Go to search results"
             onClick={(event) => {
               if (!trimmedSearch) {
                 event.preventDefault();
@@ -64,8 +64,8 @@ export function Header() {
           </Link>
         </form>
 
-        <nav className={styles.actions} aria-label="Быстрые действия">
-          <Link to="/bookmarks" className={styles.iconButton} aria-label="Избранное" title="Избранное">
+        <nav className={styles.actions} aria-label="Quick actions">
+          <Link to="/bookmarks" className={styles.iconButton} aria-label="Bookmarks" title="Bookmarks">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path
                 d="M12 20.75l-1.28-1.17C6.56 15.88 4 13.47 4 10.36 4 7.71 6.09 5.75 8.65 5.75c1.31 0 2.57.55 3.35 1.44.78-.89 2.04-1.44 3.35-1.44 2.56 0 4.65 1.96 4.65 4.61 0 3.11-2.56 5.52-6.72 9.22Z"
@@ -77,7 +77,7 @@ export function Header() {
               />
             </svg>
           </Link>
-          <Link to="/cart" className={styles.iconButton} aria-label="Корзина" title="Корзина">
+          <Link to="/cart" className={styles.iconButton} aria-label="Cart" title="Cart">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path
                 d="M5.5 5h1.24a1.5 1.5 0 0 1 1.43 1.07L8.9 8h8.35a1 1 0 0 1 .98 1.22l-1.1 4.93a2 2 0 0 1-2 1.53h-6.7"
@@ -91,7 +91,7 @@ export function Header() {
               <circle cx="16" cy="19" r="1" fill="currentColor" />
             </svg>
           </Link>
-          <Link to="/login" className={styles.iconButton} aria-label="Профиль" title="Профиль">
+          <Link to="/login" className={styles.iconButton} aria-label="Profile" title="Profile">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="12" cy="9" r="3.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
               <path

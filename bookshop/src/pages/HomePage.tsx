@@ -84,7 +84,7 @@ export default function HomePage(){
           </div>
         </>
       ) : (
-        <p className={styles.emptyState}>Новые книги пока недоступны.</p>
+        <p className={styles.emptyState}>New books are currently unavailable.</p>
       )}
       <section className={styles.newsletterSection} aria-labelledby="newsletter-title">
         <h2 id="newsletter-title" className={styles.newsletterTitle}>SUBSCRIBE TO NEWSLETTER</h2>
@@ -107,13 +107,6 @@ export default function HomePage(){
           </div>
         </form>
       </section>
-      <div className={styles.footerSection}>
-        <div className={styles.footerSeparator} aria-hidden="true" />
-        <footer className={styles.footer}>
-          <span className={styles.footerCopy}>©2022 Bookstore</span>
-          <span className={styles.footerRights}>All rights reserved</span>
-        </footer>
-      </div>
       <BookPopup
         book={selectedBook}
         isOpen={isPopupOpen}

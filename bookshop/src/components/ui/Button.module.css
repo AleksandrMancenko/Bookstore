@@ -1,8 +1,16 @@
-.btn { appearance: none; border: 1px solid transparent; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.btn { appearance: none; border: 1px solid transparent; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background-color 0.2s; }
 .primary { background: #111827; color: #fff; }
+.primary:hover { background: #4b5563; }
 .secondary { background: #e5e7eb; color: #111; }
+.secondary:hover { background: #d1d5db; }
 .ghost { background: transparent; border-color: #e5e7eb; }
-.disabled { opacity: .6; cursor: not-allowed; }
+.ghost:hover { background: #f3f4f6; }
+.disabled { background: #e5e7eb !important; color: #9ca3af !important; opacity: 1; cursor: not-allowed; }
+.disabled:hover { background: #e5e7eb !important; }
+
+
+
+
 
 
 

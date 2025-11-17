@@ -67,7 +67,7 @@ export const BookCard = memo(({ book, author, year, rating, onImageClick }: Prop
             </p>
           )}
           {shouldShowSkeleton && (
-            <span className={styles.metaSkeleton} aria-label="Загрузка данных об авторе и годе" />
+            <span className={styles.metaSkeleton} aria-label="Loading author and year data" />
           )}
         </Link>
       </div>

@@ -1,9 +1,10 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { useSearchBooksQuery } from "@/features/api/api";
 import { BookCard } from "@/components/books/BookCard";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import { booksApi } from "@/features/api/api";
+import styles from "./SearchPage.module.css";
 
 export default function SearchPage(){
   const [searchParams] = useSearchParams();
@@ -31,12 +32,19 @@ export default function SearchPage(){
   if (error) return <div>Error: {'message' in error ? error.message : 'Unknown error'}</div>;
 
   return (
-    <div>
-      <h1>Search results: {query}</h1>
+    <section className={styles.section}>
+      <header className={styles.header}>
+        <Link to="/" className={styles.backButton} aria-label="Back to main">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 12H6M6 12L10 8M6 12L10 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </Link>
+        <h1 className={styles.title}>Search results: {query}</h1>
+      </header>
       {data && (
         <>
-          <p>Found: {data.total}</p>
-          <div className="grid">
+          <p className={styles.found}>Found: {data.total}</p>
+          <div className={`grid ${styles.grid}`}>
             {data.items.map(b=> {
               const details = byId[b.isbn13];
               return (
@@ -51,7 +59,7 @@ export default function SearchPage(){
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 }
 

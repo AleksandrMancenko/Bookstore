@@ -23,3 +23,7 @@ export function Rating({ rating, maxRating = 5 }: RatingProps) {
 
 
 
+
+
+
+

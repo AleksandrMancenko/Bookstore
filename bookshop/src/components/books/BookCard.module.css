@@ -142,8 +142,8 @@
 .rating {
   display: flex;
   gap: 2px;
-  color: #ffc107;
   margin-left: auto;
+  align-items: center;
 }
 
 @keyframes shimmer {

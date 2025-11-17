@@ -1,39 +1,135 @@
 .tabs {
   width: 100%;
+  overflow: visible !important;
 }
 
 .tabList {
   display: flex;
   gap: 0;
-  border-bottom: 1px solid #eee;
   margin-bottom: 24px;
+  position: relative;
+}
+
+.tabList::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
 }
 
 .tab {
   padding: 12px 24px;
-  background: none;
+  background: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  color: #666;
-  transition: all 0.2s;
+  color: #9ca3af;
+  transition: color 0.2s;
+  position: relative;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .tab:hover {
-  color: #000;
+  background: transparent;
+  color: #4b5563;
+}
+
+.tab:active {
+  background: transparent;
+}
+
+.tab:focus {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
 }
 
 .tab.active {
-  color: #000;
-  border-bottom-color: #000;
-  font-weight: 600;
+  background: transparent;
+  color: #111827;
+  font-weight: 500;
+}
+
+.slider {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: #111827;
+  transition: left 0.3s ease, width 0.3s ease;
+  border-radius: 3px 3px 0 0;
 }
 
 .tabContent {
   min-height: 200px;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  max-height: none !important;
+  height: auto !important;
+  display: block !important;
 }
+
+/* Убираем все ограничения для параграфов в tabContent */
+.tabContent p,
+.tabContent > p,
+.tabs .tabContent p,
+.tabs .tabContent > p,
+.tabContent * p,
+div[class*="tabContent"] p,
+div[class*="tabContent"] > p {
+  margin: 0 !important;
+  line-height: 1.6 !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  max-height: none !important;
+  min-height: auto !important;
+  height: auto !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: normal !important;
+  visibility: visible !important;
+  /* Убираем все webkit-box свойства */
+  -webkit-box-orient: unset !important;
+  -webkit-box-direction: unset !important;
+  -webkit-box-pack: unset !important;
+  -webkit-box-align: unset !important;
+  -webkit-box-flex: unset !important;
+  -webkit-box-lines: unset !important;
+}
+
+/* Дополнительная защита для описания с классом descriptionText */
+.tabContent .descriptionText,
+.tabs .tabContent .descriptionText,
+.tabContent p.descriptionText,
+.tabs .tabContent p.descriptionText {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  -webkit-box-direction: unset !important;
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+}
+
+
+
+
+
 
 
 

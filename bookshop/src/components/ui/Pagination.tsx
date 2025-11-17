@@ -86,7 +86,7 @@ export const Pagination = memo(({ page, total, pageSize, onPageChange }: Props) 
         className={`${styles.navButton} ${styles.navPrev} ${!canGoPrev ? styles.navDisabled : ""}`}
         onClick={handlePrev}
         disabled={!canGoPrev}
-        aria-label="Предыдущая страница"
+        aria-label="Previous page"
       >
         <ArrowLeftIcon />
         <span className={styles.navLabel}>Prev</span>
@@ -118,7 +118,7 @@ export const Pagination = memo(({ page, total, pageSize, onPageChange }: Props) 
         className={`${styles.navButton} ${styles.navNext} ${!canGoNext ? styles.navDisabled : ""}`}
         onClick={handleNext}
         disabled={!canGoNext}
-        aria-label="Следующая страница"
+        aria-label="Next page"
       >
         <span className={styles.navLabel}>Next</span>
         <ArrowRightIcon />
