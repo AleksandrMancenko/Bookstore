@@ -1,178 +1,199 @@
-# Bookstore - Интернет-магазин книг
+# Bookstore - Online Book Shop
 
-Современное веб-приложение для покупки книг, построенное на React и TypeScript. Проект реализует полнофункциональный интернет-магазин с каталогом книг, корзиной покупок, системой избранного и личным кабинетом пользователя.
+A modern web application for purchasing books, built with React and TypeScript. This project implements a full-featured online bookstore with a book catalog, shopping cart, favorites system, and user account management.
 
-## 🚀 Основные возможности
+## 🚀 Features
 
-- **Каталог книг** - просмотр новых поступлений с пагинацией
-- **Поиск книг** - полнотекстовый поиск по каталогу
-- **Детальная информация** - подробные страницы книг с описанием, рейтингом и метаданными
-- **Корзина покупок** - добавление книг в корзину с управлением количеством
-- **Закладки (Избранное)** - сохранение понравившихся книг
-- **Авторизация** - регистрация, вход и восстановление пароля
-- **Личный кабинет** - управление профилем пользователя
-- **Адаптивный дизайн** - полная поддержка мобильных устройств, планшетов и десктопов
+- **Book Catalog** - Browse new arrivals with pagination
+- **Book Search** - Full-text search across the catalog
+- **Book Details** - Detailed book pages with descriptions, ratings, and metadata
+- **Shopping Cart** - Add books to cart with quantity management
+- **Bookmarks (Favorites)** - Save your favorite books
+- **Authentication** - User registration, login, and password recovery
+- **User Account** - Profile management
+- **Responsive Design** - Full support for mobile devices, tablets, and desktops
+- **Adaptive Navigation** - Burger menu for mobile, sidebar with user profile for desktop
 
-## 🛠 Технологический стек
+## 🛠 Tech Stack
 
-### Основные технологии
-- **React 19** - библиотека для создания пользовательских интерфейсов
-- **TypeScript** - типизированный JavaScript для надежности кода
-- **Vite** - быстрый сборщик и dev-сервер
-- **Redux Toolkit** - управление состоянием приложения
-- **RTK Query** - работа с API и кэширование данных
-- **React Router v7** - маршрутизация в приложении
+### Core Technologies
+- **React 19** - UI library for building user interfaces
+- **TypeScript** - Typed JavaScript for code reliability
+- **Vite** - Fast build tool and dev server
+- **Redux Toolkit** - State management
+- **RTK Query** - API data fetching and caching
+- **React Router v7** - Client-side routing
 
-### Стилизация
-- **CSS Modules** - модульные стили для компонентов
-- **SCSS** - препроцессор CSS для глобальных стилей
-- **Адаптивный дизайн** - медиа-запросы для всех размеров экранов
+### Styling
+- **CSS Modules** - Scoped styles for components
+- **SCSS** - CSS preprocessor for global styles
+- **Responsive Design** - Media queries for all screen sizes
 
-### Валидация и типизация
-- **Zod** - валидация схем данных
+### Validation & Typing
+- **Zod** - Schema validation
 
-## 📁 Структура проекта
+## 📁 Project Structure
 
 ```
 bookshop/
 ├── src/
-│   ├── app/                    # Конфигурация приложения
-│   │   ├── hooks.ts           # Кастомные хуки Redux
-│   │   ├── routes.tsx         # Маршруты приложения
-│   │   └── store.ts           # Настройка Redux store
-│   ├── components/            # React компоненты
-│   │   ├── auth/              # Компоненты авторизации
-│   │   ├── books/             # Компоненты для работы с книгами
-│   │   ├── cart/              # Компоненты корзины
-│   │   ├── layout/            # Компоненты макета (Header, Footer, Sidebar)
-│   │   └── ui/                # Переиспользуемые UI компоненты
-│   ├── features/              # Redux слайсы и API
+│   ├── app/                    # Application configuration
+│   │   ├── hooks.ts           # Custom Redux hooks
+│   │   ├── routes.tsx         # Application routes
+│   │   └── store.ts           # Redux store setup
+│   ├── components/            # React components
+│   │   ├── auth/              # Authentication components
+│   │   ├── books/             # Book-related components
+│   │   ├── cart/              # Shopping cart components
+│   │   ├── layout/            # Layout components (Header, Footer, Sidebar)
+│   │   └── ui/                # Reusable UI components
+│   ├── features/              # Redux slices and API
 │   │   ├── api/               # RTK Query API endpoints
-│   │   ├── auth/              # Авторизация
-│   │   ├── books/             # Управление книгами
-│   │   ├── bookmarks/         # Закладки
-│   │   └── cart/              # Корзина
-│   ├── helpers/               # Вспомогательные функции
-│   ├── pages/                 # Страницы приложения
-│   ├── styles/                # Глобальные стили
-│   └── types/                 # TypeScript типы
-├── public/                    # Статические файлы
+│   │   ├── auth/              # Authentication
+│   │   ├── books/             # Book management
+│   │   ├── bookmarks/         # Bookmarks
+│   │   └── cart/              # Shopping cart
+│   ├── helpers/               # Utility functions
+│   ├── pages/                 # Application pages
+│   ├── styles/                # Global styles
+│   └── types/                 # TypeScript types
+├── public/                    # Static files
 └── package.json
 ```
 
-## 🎨 Особенности дизайна
+## 🎨 Design Features
 
-- **Современный UI** - чистый и минималистичный интерфейс
-- **Адаптивность** - поддержка всех размеров экранов (320px - 1920px+)
-- **Accessibility** - поддержка `prefers-reduced-motion` для доступности
-- **Типографика** - использование шрифта Bebas Neue для заголовков
-- **Цветовая схема** - мягкие пастельные тона для карточек книг
+- **Modern UI** - Clean and minimalist interface
+- **Responsiveness** - Support for all screen sizes (320px - 1920px+)
+- **Accessibility** - Support for `prefers-reduced-motion` for better accessibility
+- **Typography** - Bebas Neue font for headings
+- **Color Scheme** - Soft pastel tones for book cards
+- **Adaptive Navigation** - Smart menu system that adapts to screen size
 
-## 📱 Адаптивные брейкпоинты
+## 📱 Responsive Breakpoints
 
-- **Mobile**: до 480px
+- **Mobile**: up to 480px
 - **Tablet**: 481px - 768px
 - **Desktop (small)**: 769px - 1024px
 - **Desktop (medium)**: 1025px - 1280px
 - **Desktop (large)**: 1281px+
 
-## 🚦 Установка и запуск
+### Navigation Behavior
 
-### Требования
+- **Desktop (> 1024px)**: 
+  - Search bar visible in header
+  - Bookmark and Cart icons in header
+  - Profile button opens sidebar with user info and navigation
+  - No search in sidebar (no duplication)
+
+- **Tablet/Mobile (≤ 1024px)**:
+  - Search bar hidden in header
+  - Bookmark and Cart icons hidden
+  - Burger menu button in top-right corner
+  - Sidebar contains search, navigation links, and user profile
+  - Sidebar opens from the right side
+
+## 🚦 Installation & Setup
+
+### Prerequisites
 - Node.js 18+ 
-- npm или yarn
+- npm or yarn
 
-### Установка зависимостей
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Запуск в режиме разработки
+### Development Mode
 
 ```bash
 npm run dev
 ```
 
-Приложение будет доступно по адресу `http://localhost:5173`
+The application will be available at `http://localhost:5173`
 
-### Сборка для продакшена
+### Production Build
 
 ```bash
 npm run build
 ```
 
-Собранные файлы будут в папке `dist/`
+Built files will be in the `dist/` folder
 
-### Предпросмотр продакшен сборки
+### Preview Production Build
 
 ```bash
 npm run preview
 ```
 
-### Линтинг кода
+### Linting
 
 ```bash
 npm run lint
 ```
 
-## 📄 Страницы приложения
+## 📄 Application Pages
 
-- `/` - Главная страница с новыми поступлениями
-- `/search?q=query` - Страница поиска книг
-- `/book/:isbn13` - Детальная страница книги
-- `/cart` - Корзина покупок (требует авторизации)
-- `/bookmarks` - Закладки/Избранное (требует авторизации)
-- `/account` - Личный кабинет (требует авторизации)
-- `/login` - Страница входа/регистрации
-- `/reset-password` - Восстановление пароля
-- `/new-password` - Установка нового пароля
+- `/` - Home page with new arrivals
+- `/search?q=query` - Book search page
+- `/book/:isbn13` - Book details page
+- `/cart` - Shopping cart (requires authentication)
+- `/bookmarks` - Bookmarks/Favorites (requires authentication)
+- `/account` - User account (requires authentication)
+- `/login` - Login/Registration page
+- `/reset-password` - Password recovery
+- `/new-password` - Set new password
 
-## 🔐 Защищенные маршруты
+## 🔐 Protected Routes
 
-Следующие страницы доступны только авторизованным пользователям:
-- `/cart` - Корзина
-- `/bookmarks` - Закладки
-- `/account` - Личный кабинет
+The following pages are only accessible to authenticated users:
+- `/cart` - Shopping cart
+- `/bookmarks` - Bookmarks
+- `/account` - User account
 
-При попытке доступа неавторизованный пользователь будет перенаправлен на страницу входа.
+Unauthenticated users will be redirected to the login page when attempting to access these routes.
 
-## 🗂 Управление состоянием
+## 🗂 State Management
 
-Приложение использует Redux Toolkit для управления состоянием:
+The application uses Redux Toolkit for state management:
 
-- **books** - кэш данных о книгах
-- **cart** - корзина покупок (сохраняется в localStorage)
-- **bookmarks** - закладки пользователя (сохраняются в localStorage)
-- **auth** - данные авторизованного пользователя (сохраняются в localStorage)
+- **books** - Cache for book data
+- **cart** - Shopping cart (persisted in localStorage)
+- **bookmarks** - User bookmarks (persisted in localStorage)
+- **auth** - Authenticated user data (persisted in localStorage)
 
-## 🎯 Основные компоненты
+## 🎯 Key Components
 
-### UI Компоненты
-- `Button` - кнопка с различными вариантами стилей
-- `Input` - поле ввода с валидацией
-- `Card` - карточка для отображения контента
-- `Modal` - модальное окно
-- `Pagination` - пагинация списков
-- `Rating` - компонент рейтинга
-- `Tabs` - вкладки для переключения контента
-- `Skeleton` - компонент загрузки
+### UI Components
+- `Button` - Button with various style variants
+- `Input` - Input field with validation
+- `Card` - Card component for content display
+- `Modal` - Modal dialog
+- `Pagination` - List pagination
+- `Rating` - Rating component
+- `Tabs` - Tab navigation
+- `Skeleton` - Loading skeleton component
 
-### Layout Компоненты
-- `Header` - шапка сайта с поиском и навигацией
-- `Footer` - подвал сайта
-- `Sidebar` - боковое меню для мобильных устройств
-- `Layout` - основной макет приложения
+### Layout Components
+- `Header` - Site header with search and navigation
+  - Desktop: Search bar, bookmark/cart icons, profile button
+  - Mobile: Logo, burger menu button
+- `Footer` - Site footer
+- `Sidebar` - Side navigation menu
+  - Desktop: User profile, navigation links, logout button
+  - Mobile: Search, user profile, navigation links, auth buttons
+- `Layout` - Main application layout wrapper
 
-## 🔧 Принципы разработки
+## 🔧 Development Principles
 
-- **SOLID** - следование принципам объектно-ориентированного программирования
-- **KISS** - простота и понятность кода
-- **DRY** - избегание дублирования кода
-- **Component-based** - модульная архитектура компонентов
-- **Type Safety** - строгая типизация TypeScript
+- **SOLID** - Following object-oriented programming principles
+- **KISS** - Keep it simple and straightforward
+- **DRY** - Don't repeat yourself
+- **Component-based** - Modular component architecture
+- **Type Safety** - Strict TypeScript typing
 
-## 📦 Основные зависимости
+## 📦 Key Dependencies
 
 ```json
 {
@@ -188,21 +209,44 @@ npm run lint
 
 ## 🌐 API
 
-Приложение использует внешний API для получения данных о книгах. Все запросы обрабатываются через RTK Query с автоматическим кэшированием.
+The application uses an external API for book data. All requests are handled through RTK Query with automatic caching and request deduplication.
 
-## 📝 Лицензия
+## 🎨 Adaptive Menu System
 
-Проект создан в образовательных целях.
+The application features a smart adaptive navigation system:
 
-## 👨‍💻 Разработка
+1. **Desktop Experience**: 
+   - Quick access icons (Bookmarks, Cart) in header
+   - Profile button opens sidebar with user information
+   - Search always available in header
 
-Проект использует современные практики разработки:
-- TypeScript для типобезопасности
-- ESLint для проверки кода
-- CSS Modules для изоляции стилей
-- Redux Toolkit для предсказуемого управления состоянием
+2. **Mobile Experience**:
+   - Burger menu for space efficiency
+   - All navigation consolidated in sidebar
+   - Search moved to sidebar to save header space
+   - User profile information accessible via sidebar
+
+## 📝 License
+
+This project is created for educational purposes.
+
+## 👨‍💻 Development
+
+The project uses modern development practices:
+- TypeScript for type safety
+- ESLint for code quality
+- CSS Modules for style isolation
+- Redux Toolkit for predictable state management
+- Component-based architecture for maintainability
+
+## 🚀 Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start development server: `npm run dev`
+4. Open `http://localhost:5173` in your browser
 
 ---
 
-**Версия:** 0.0.0  
-**Статус:** В разработке
+**Version:** 0.0.0  
+**Status:** In Development
