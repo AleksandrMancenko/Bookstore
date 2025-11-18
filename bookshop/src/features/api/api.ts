@@ -32,7 +32,7 @@ const mapDetails = (response: DetailsResponse): BookDetails => {
 export const booksApi = createApi({
   reducerPath: "booksApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.itbook.store/1.0",
+    baseUrl: import.meta.env.DEV ? "/api" : "https://api.itbook.store/1.0",
   }),
   tagTypes: ["Book", "BookDetails"],
   endpoints: (builder) => ({

@@ -59,7 +59,7 @@ export function Header() {
             Bookstore
           </Link>
 
-          <form className={styles.search} role="search" onSubmit={handleSubmit}>
+          <form className={`${styles.search} ${styles.desktopSearch}`} role="search" onSubmit={handleSubmit}>
             <input
               className={styles.searchInput}
               type="search"
@@ -88,7 +88,7 @@ export function Header() {
             {/* Показываем иконки только для авторизованных пользователей на десктопе */}
             {isAuthenticated && (
               <>
-                <Link to="/bookmarks" className={styles.iconButton} aria-label="Bookmarks" title="Bookmarks">
+                <Link to="/bookmarks" className={`${styles.iconButton} ${styles.desktopOnly}`} aria-label="Bookmarks" title="Bookmarks">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path
                       d="M12 20.75l-1.28-1.17C6.56 15.88 4 13.47 4 10.36 4 7.71 6.09 5.75 8.65 5.75c1.31 0 2.57.55 3.35 1.44.78-.89 2.04-1.44 3.35-1.44 2.56 0 4.65 1.96 4.65 4.61 0 3.11-2.56 5.52-6.72 9.22Z"
@@ -105,7 +105,7 @@ export function Header() {
                     </span>
                   )}
                 </Link>
-                <Link to="/cart" className={styles.iconButton} aria-label="Cart" title="Cart">
+                <Link to="/cart" className={`${styles.iconButton} ${styles.desktopOnly}`} aria-label="Cart" title="Cart">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path
                       d="M5.5 5h1.24a1.5 1.5 0 0 1 1.43 1.07L8.9 8h8.35a1 1 0 0 1 .98 1.22l-1.1 4.93a2 2 0 0 1-2 1.53h-6.7"
@@ -127,12 +127,31 @@ export function Header() {
               </>
             )}
             
-            {/* Кнопка меню/профиля для открытия сайдбара */}
+            {/* Бургер-меню для мобильных устройств */}
             <button
-              className={styles.iconButton}
+              className={`${styles.iconButton} ${styles.mobileMenuButton}`}
               onClick={() => setIsSidebarOpen(true)}
               aria-label="Open menu"
               title="Menu"
+              type="button"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M3 12h18M3 6h18M3 18h18"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            
+            {/* Кнопка профиля для десктопа */}
+            <button
+              className={`${styles.iconButton} ${styles.desktopProfileButton}`}
+              onClick={() => setIsSidebarOpen(true)}
+              aria-label="Open profile menu"
+              title="Profile"
               type="button"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

@@ -124,8 +124,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             </svg>
           </button>
 
-          {/* Search */}
-          <form className={styles.search} role="search" onSubmit={handleSubmit}>
+          {/* Search - только на мобильных устройствах */}
+          <form className={`${styles.search} ${styles.mobileSearch}`} role="search" onSubmit={handleSubmit}>
             <input
               className={styles.searchInput}
               type="search"
@@ -159,6 +159,28 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               </svg>
             </Link>
           </form>
+
+          {/* User info for authenticated users */}
+          {isAuthenticated && user && (
+            <div className={styles.userInfo}>
+              <div className={styles.userAvatar}>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="9" r="3.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <path
+                    d="M6 19.5c1.21-2.36 3.64-3.5 6-3.5s4.79 1.14 6 3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+              <div className={styles.userDetails}>
+                <div className={styles.userName}>{user.name || user.email}</div>
+                {user.name && <div className={styles.userEmail}>{user.email}</div>}
+              </div>
+            </div>
+          )}
 
           {/* Navigation items for authenticated users */}
           {isAuthenticated && (

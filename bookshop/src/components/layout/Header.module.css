@@ -7,6 +7,8 @@
   right: 0;
   z-index: 1000;
   background: #f9fafc;
+  padding: 0 var(--rhythm-5);
+  box-sizing: border-box;
 }
 
 .inner {
@@ -14,9 +16,11 @@
   grid-template-columns: auto minmax(320px, 1fr) auto;
   align-items: center;
   gap: 32px;
-  padding: 20px var(--rhythm-5);
+  padding: 20px 0;
   margin: 0 auto;
-  width: min(1440px, 100%);
+  max-width: 1440px;
+  width: 100%;
+  box-sizing: border-box;
   position: relative;
 }
 
@@ -36,6 +40,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #111827;
+  justify-self: start;
 }
 
 .search {
@@ -43,6 +48,10 @@
   max-width: 540px;
   width: 100%;
   justify-self: center;
+}
+
+.desktopSearch {
+  display: block;
 }
 
 .searchInput {
@@ -190,11 +199,64 @@
   box-sizing: border-box;
 }
 
+/* Адаптивные классы для отображения элементов */
+.desktopOnly {
+  display: inline-flex;
+}
+
+.mobileMenuButton {
+  display: none;
+}
+
+.desktopProfileButton {
+  display: inline-flex;
+}
+
+
+@media (max-width: 1448px) {
+  .inner {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1430px) {
+  .inner {
+    gap: 20px;
+    grid-template-columns: auto minmax(280px, 1fr) auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Скрываем иконки на планшете и мобильных */
+  .desktopOnly {
+    display: none !important;
+  }
+
+  /* Скрываем поиск в header на планшете и мобильных */
+  .desktopSearch {
+    display: none !important;
+  }
+
+  /* Показываем бургер-меню на планшете и мобильных */
+  .mobileMenuButton {
+    display: inline-flex !important;
+  }
+
+  /* Скрываем кнопку профиля на планшете и мобильных */
+  .desktopProfileButton {
+    display: none !important;
+  }
+}
+
 @media (max-width: 960px) {
+  .header {
+    padding: 0 16px;
+  }
+
   .inner {
     grid-template-columns: auto minmax(240px, 1fr) auto;
     gap: 20px;
-    padding: 16px 16px 20px;
+    padding: 16px 0 20px;
   }
 
   .actions {
@@ -203,20 +265,27 @@
 }
 
 @media (max-width: 768px) {
-  .inner {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 14px 16px;
+  .header {
+    padding: 0 16px;
   }
 
-  .search {
-    order: 3;
-    justify-self: stretch;
+  .inner {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 14px 0;
+    align-items: center;
+  }
+
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .actions {
-    order: 2;
-    justify-self: start;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    order: unset;
   }
 }
 

@@ -71,6 +71,10 @@
   margin-bottom: 32px;
 }
 
+.mobileSearch {
+  display: none;
+}
+
 .searchInput {
   width: 100%;
   height: 48px;
@@ -122,6 +126,55 @@
 .searchLink svg {
   width: 18px;
   height: 18px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.userAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.userAvatar svg {
+  width: 28px;
+  height: 28px;
+}
+
+.userDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userEmail {
+  font-size: 14px;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .nav {
@@ -205,6 +258,13 @@
 
 .logoutButton:active {
   transform: scale(0.98);
+}
+
+@media (max-width: 1024px) {
+  /* Показываем поиск в sidebar на планшете и мобильных */
+  .mobileSearch {
+    display: block;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -54,6 +54,30 @@
   margin: var(--rhythm-6) 0;
 }
 
+.errorState {
+  text-align: center;
+  padding: var(--rhythm-6) var(--rhythm-5);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #991b1b;
+}
+
+.errorState p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.errorState p:first-child {
+  font-weight: 600;
+  margin-bottom: var(--rhythm-2);
+}
+
+.retryButton {
+  margin-top: var(--rhythm-4);
+}
+
 .newsletterSection { display: flex; flex-direction: column; gap: var(--rhythm-4); width: 100%; max-width: 1440px; margin: 0 auto; padding: 48px 56px; background: var(--card-color-lavender); border-radius: 6px; border: none; text-align: left; box-shadow: 0 20px 60px rgba(17, 24, 39, 0.08); }
 .newsletterTitle { margin: 0; font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; color: #22223b; }
 .newsletterText { margin: 0; color: #6b6f82; font-size: 16px; line-height: 1.6; max-width: 100%; }

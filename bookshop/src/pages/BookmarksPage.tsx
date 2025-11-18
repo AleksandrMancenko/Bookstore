@@ -11,7 +11,7 @@ export default function BookmarksPage() {
   const dispatch = useDispatch();
   const bookmarkIds = useSelector((s: RootState) => s.bookmarks.ids);
   const booksById = useSelector((s: RootState) => s.books.byId);
-  const { data: popularBooks = [] } = useGetNewReleasesQuery();
+  const { data: popularBooks = [], error: popularBooksError } = useGetNewReleasesQuery();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Убираем дубликаты перед фильтрацией
