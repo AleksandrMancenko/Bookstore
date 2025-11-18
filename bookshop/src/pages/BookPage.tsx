@@ -44,93 +44,6 @@ export default function BookPage(){
     });
   }, [booksById, dispatch, related]);
 
-  // Убираем ограничения для описания после рендера
-  useEffect(() => {
-    const removeLineClamp = () => {
-      // Ищем конкретный элемент описания по ID
-      const descElement = document.getElementById('book-description-text');
-      if (descElement) {
-        // Удаляем все webkit-box свойства
-        descElement.style.removeProperty('display');
-        descElement.style.removeProperty('-webkit-line-clamp');
-        descElement.style.removeProperty('line-clamp');
-        descElement.style.removeProperty('-webkit-box-orient');
-        descElement.style.removeProperty('-webkit-box-direction');
-        descElement.style.removeProperty('-webkit-box-pack');
-        descElement.style.removeProperty('-webkit-box-align');
-        descElement.style.removeProperty('-webkit-box-flex');
-        
-        // Удаляем фиксированную высоту ПЕРВЫМ делом
-        descElement.style.removeProperty('height');
-        descElement.style.removeProperty('min-height');
-        
-        // Устанавливаем правильные значения
-        descElement.style.setProperty('display', 'block', 'important');
-        descElement.style.setProperty('overflow', 'visible', 'important');
-        descElement.style.setProperty('max-height', 'none', 'important');
-        descElement.style.setProperty('min-height', '0', 'important');
-        descElement.style.setProperty('height', 'unset', 'important');
-        descElement.style.setProperty('text-overflow', 'clip', 'important');
-        descElement.style.setProperty('white-space', 'normal', 'important');
-      }
-      
-      // Также обрабатываем все параграфы внутри tabContent
-      const tabContents = document.querySelectorAll('[class*="tabContent"]');
-      tabContents.forEach((tabContent) => {
-        const paragraphs = tabContent.querySelectorAll('p');
-        paragraphs.forEach((p) => {
-          const element = p as HTMLElement;
-          // Удаляем все webkit-box свойства
-          element.style.removeProperty('display');
-          element.style.removeProperty('-webkit-line-clamp');
-          element.style.removeProperty('line-clamp');
-          element.style.removeProperty('-webkit-box-orient');
-          element.style.removeProperty('-webkit-box-direction');
-          
-          // Удаляем фиксированную высоту ПЕРВЫМ делом
-          element.style.removeProperty('height');
-          element.style.removeProperty('min-height');
-          
-          // Устанавливаем правильные значения
-          element.style.setProperty('display', 'block', 'important');
-          element.style.setProperty('overflow', 'visible', 'important');
-          element.style.setProperty('max-height', 'none', 'important');
-          element.style.setProperty('min-height', '0', 'important');
-          element.style.setProperty('height', 'unset', 'important');
-          element.style.setProperty('text-overflow', 'clip', 'important');
-          element.style.setProperty('white-space', 'normal', 'important');
-        });
-      });
-    };
-
-    // Используем requestAnimationFrame для гарантии применения после рендера
-    const rafId = requestAnimationFrame(() => {
-      removeLineClamp();
-      setTimeout(removeLineClamp, 0);
-      setTimeout(removeLineClamp, 100);
-      setTimeout(removeLineClamp, 500);
-    });
-    
-    // Отслеживаем изменения в DOM при переключении вкладок
-    const observer = new MutationObserver(() => {
-      requestAnimationFrame(removeLineClamp);
-    });
-
-    const tabsContainer = document.querySelector('[class*="tabs"]');
-    if (tabsContainer) {
-      observer.observe(tabsContainer, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class', 'style']
-      });
-    }
-    
-    return () => {
-      cancelAnimationFrame(rafId);
-      observer.disconnect();
-    };
-  }, [entity?.desc]);
 
   // Гарантируем, что данные книги сохранены в books.byId
   useEffect(() => {
@@ -149,16 +62,23 @@ export default function BookPage(){
       id: "description",
       label: "Description",
       content: entity.desc ? (
-        <div style={{ 
-          display: 'block',
-          width: '100%'
-        }}>
-          <p 
+        <div 
+          style={{ 
+            display: 'block',
+            width: '100%',
+            overflow: 'visible',
+          }}
+        >
+          <div
             id="book-description-text"
+            className={styles.descriptionText}
             style={{
               display: 'block',
               overflow: 'visible',
+              overflowX: 'visible',
+              overflowY: 'visible',
               maxHeight: 'none',
+              minHeight: 'auto',
               height: 'auto',
               textOverflow: 'clip',
               whiteSpace: 'normal',
@@ -166,11 +86,11 @@ export default function BookPage(){
               wordBreak: 'normal',
               visibility: 'visible',
               margin: 0,
+              padding: 0,
               lineHeight: '1.6',
             }}
-          >
-            {entity.desc}
-          </p>
+            dangerouslySetInnerHTML={{ __html: entity.desc }}
+          />
         </div>
       ) : (
         <p>Description not available</p>
@@ -192,7 +112,9 @@ export default function BookPage(){
   const publisherText = entity.publisher && entity.year 
     ? `${entity.publisher}, ${entity.year}` 
     : entity.publisher || "";
-  const isInBookmarks = bookmarkIds.includes(entity.isbn13);
+  // Убираем дубликаты и проверяем наличие книги в избранном
+  const uniqueBookmarkIds = Array.from(new Set(bookmarkIds));
+  const isInBookmarks = uniqueBookmarkIds.includes(entity.isbn13);
 
   const handleBookmarkToggle = () => {
     if (entity) {

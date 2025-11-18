@@ -1,0 +1,223 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 85vw);
+  max-width: 100%;
+  background: #ffffff;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
+.closeButton {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.closeButton:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.closeButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.search {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 48px;
+  padding: 0 56px 0 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.searchLink {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #4b5563;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.searchLink:hover {
+  color: #111827;
+}
+
+.searchLink svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: auto;
+}
+
+.navItem {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+  padding: 12px 0;
+  transition: color 0.2s ease, transform 0.1s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  outline: none;
+  background: transparent;
+  display: block;
+}
+
+.navItem:hover {
+  color: #374151;
+  text-decoration: none;
+  background: transparent;
+}
+
+.navItem:focus {
+  outline: none;
+  background: transparent;
+}
+
+.navItem:active {
+  outline: none;
+  background: transparent;
+  transform: scale(0.98);
+}
+
+.authSection {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.signInButton,
+.logoutButton {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.signInButton {
+  background: #111827;
+  color: #ffffff;
+}
+
+.signInButton:hover {
+  background: #374151;
+}
+
+.signInButton:active {
+  transform: scale(0.98);
+}
+
+.logoutButton {
+  background: #111827;
+  color: #ffffff;
+}
+
+.logoutButton:hover {
+  background: #374151;
+}
+
+.logoutButton:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .overlay,
+  .closeButton,
+  .searchInput,
+  .searchLink,
+  .navItem,
+  .signInButton,
+  .logoutButton {
+    transition: none;
+    animation: none;
+  }
+}
+

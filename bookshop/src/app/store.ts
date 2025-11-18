@@ -4,7 +4,7 @@ import cartReducer from "@/features/cart/cart.slice";
 import bookmarksReducer from "@/features/bookmarks/bookmarks.slice";
 import authReducer from "@/features/auth/auth.slice";
 import { booksApi } from "@/features/api/api";
-import { authApi } from "@/features/api/authApi";
+import { authApi, type User } from "@/features/api/authApi";
 import { persist, restore } from "@/helpers/storage";
 
 const rootReducer = combineReducers({
@@ -18,18 +18,27 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
+// Восстанавливаем пользователя из localStorage
+const savedUser = restore<User | null>("auth_user", null);
+
 const preloaded: PreloadedState<RootState> = {
   cart: { items: restore("cart", []) },
-  bookmarks: { ids: restore("bookmarks", []) },
-  auth: { user: restore("auth", undefined), loading: false },
+  bookmarks: { ids: Array.from(new Set(restore("bookmarks", []))) }, // Убираем дубликаты при восстановлении
+  auth: {
+    user: savedUser,
+    loading: false,
+    error: null,
+    isAuthenticated: !!savedUser,
+  },
 };
 
 const persistMiddleware: Middleware<unknown, RootState> = (storeApi) => (next) => (action) => {
   const result = next(action);
   const state = storeApi.getState();
   persist("cart", state.cart.items);
-  persist("bookmarks", state.bookmarks.ids);
-  persist("auth", state.auth.user);
+  // Убираем дубликаты перед сохранением
+  persist("bookmarks", Array.from(new Set(state.bookmarks.ids)));
+  // auth.user сохраняется в auth.slice при логине/логауте
   return result;
 };
 

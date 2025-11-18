@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import type { RootState } from "@/app/store";
 import { BookCard } from "@/components/books/BookCard";
 import { booksApi, useGetNewReleasesQuery } from "@/features/api/api";
+import { bookmarksActions } from "@/features/bookmarks/bookmarks.slice";
 import styles from "./BookmarksPage.module.css";
 
 export default function BookmarksPage() {
@@ -13,18 +14,84 @@ export default function BookmarksPage() {
   const { data: popularBooks = [] } = useGetNewReleasesQuery();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const favoriteItems = useMemo(
-    () => bookmarkIds.map(id => booksById[id]).filter(Boolean),
-    [bookmarkIds, booksById]
+  // Убираем дубликаты перед фильтрацией
+  const uniqueBookmarkIds = useMemo(
+    () => Array.from(new Set(bookmarkIds)),
+    [bookmarkIds]
   );
 
+  const favoriteItems = useMemo(
+    () => uniqueBookmarkIds.map(id => booksById[id]).filter(Boolean),
+    [uniqueBookmarkIds, booksById]
+  );
+
+  // Отслеживаем, какие запросы были инициированы, чтобы не дублировать
+  const initiatedRequestsRef = useRef<Set<string>>(new Set());
+  // Отслеживаем ID, для которых запросы завершились с ошибкой
+  const failedIdsRef = useRef<Set<string>>(new Set());
+
+  // Загружаем книги для всех букмарков
   useEffect(() => {
-    bookmarkIds.forEach(id => {
+    uniqueBookmarkIds.forEach(id => {
       if (!booksById[id]) {
-        dispatch(booksApi.endpoints.getBookDetails.initiate(id));
+        // Если запрос еще не инициирован, инициируем его
+        if (!initiatedRequestsRef.current.has(id)) {
+          // Помечаем, что запрос инициирован
+          initiatedRequestsRef.current.add(id);
+          
+          // Инициируем запрос с forceRefetch, чтобы гарантировать загрузку
+          const promise = dispatch(booksApi.endpoints.getBookDetails.initiate(id, { forceRefetch: true }));
+          
+          // Отслеживаем результат запроса
+          promise.then((result) => {
+            if ('error' in result && result.error) {
+              // Запрос завершился с ошибкой - помечаем для возможной очистки
+              failedIdsRef.current.add(id);
+            } else if ('data' in result && result.data) {
+              // Успешная загрузка - удаляем из отслеживания
+              initiatedRequestsRef.current.delete(id);
+              failedIdsRef.current.delete(id);
+            }
+          }).catch(() => {
+            // При ошибке помечаем для возможной очистки
+            initiatedRequestsRef.current.delete(id);
+            failedIdsRef.current.add(id);
+          });
+        }
+      } else {
+        // Книга уже загружена - удаляем из отслеживания
+        initiatedRequestsRef.current.delete(id);
+        failedIdsRef.current.delete(id);
       }
     });
-  }, [dispatch, bookmarkIds, booksById]);
+  }, [dispatch, uniqueBookmarkIds, booksById]);
+
+  // Очищаем неверные ID только для тех, которые точно завершились с ошибкой
+  // Делаем это с большой задержкой, чтобы дать время на загрузку
+  useEffect(() => {
+    if (uniqueBookmarkIds.length === 0) return;
+
+    const timer = setTimeout(() => {
+      // Удаляем только те ID, для которых запросы точно завершились с ошибкой
+      const failedIds = Array.from(failedIdsRef.current).filter(id => !booksById[id]);
+      
+      if (failedIds.length > 0) {
+        const validIds = uniqueBookmarkIds.filter(id => !failedIds.includes(id));
+        
+        if (validIds.length !== uniqueBookmarkIds.length) {
+          dispatch(bookmarksActions.cleanupInvalidIds({ validIds }));
+        }
+        
+        // Очищаем отслеживание для удаленных ID
+        failedIds.forEach(id => {
+          failedIdsRef.current.delete(id);
+          initiatedRequestsRef.current.delete(id);
+        });
+      }
+    }, 20000); // Увеличиваем время ожидания до 20 секунд
+
+    return () => clearTimeout(timer);
+  }, [dispatch, uniqueBookmarkIds, booksById]);
 
   const popular = useMemo(
     () => popularBooks.slice(0, 16),

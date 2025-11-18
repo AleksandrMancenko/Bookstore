@@ -126,6 +126,31 @@ div[class*="tabContent"] > p {
   white-space: normal !important;
 }
 
+/* Специфичный селектор для описания книги по ID */
+#book-description-text,
+.tabContent #book-description-text,
+.tabs .tabContent #book-description-text,
+div[class*="tabContent"] #book-description-text {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  -webkit-box-direction: unset !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  max-height: none !important;
+  min-height: auto !important;
+  height: auto !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: normal !important;
+  visibility: visible !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+
 
 
 
